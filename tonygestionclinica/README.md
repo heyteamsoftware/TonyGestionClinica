@@ -17,7 +17,7 @@ compartido: **HTML5 + Tailwind (CDN) + Vanilla JS (SPA)** en el frontend y
 ## Estructura
 
 ```
-build_clinicweb/
+tonygestionclinica/
 ├── index.html              SPA (único punto de entrada)
 ├── .htaccess               Seguridad y cabeceras
 ├── api/
@@ -34,10 +34,15 @@ build_clinicweb/
 
 ## Instalación
 
-1. Sube el contenido de `build_clinicweb/` por FTP a la carpeta pública del hosting.
+1. Sube la carpeta `tonygestionclinica/` completa por FTP dentro de `htdocs/`, de modo que
+   el index quede en `htdocs/tonygestionclinica/index.html`.
 2. Asegúrate de que la carpeta `db/` tenga permisos de escritura (`755` o `777` si el hosting lo exige).
-3. Abre la URL en el navegador. En la primera visita se crea `db/clinica.sqlite` con el
-   esquema, los gabinetes, los doctores y el catálogo de actos clínicos.
+3. Abre `https://<tu-dominio>/tonygestionclinica/` en el navegador. En la primera visita se
+   crea `db/clinica.sqlite` con el esquema, los gabinetes, los doctores y el catálogo de
+   actos clínicos.
+
+Todas las rutas del proyecto son relativas, así que la aplicación funciona igual colgada de
+un subdirectorio que en la raíz del dominio.
 
 **Requisitos:** PHP 8.0+ con la extensión `pdo_sqlite` (incluida por defecto en la mayoría de hostings).
 

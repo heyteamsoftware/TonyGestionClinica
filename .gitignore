@@ -1,7 +1,7 @@
 # Base de datos generada en tiempo de ejecucion
-build_clinicweb/db/*.sqlite
-build_clinicweb/db/*.sqlite-journal
-build_clinicweb/db/*.db
+tonygestionclinica/db/*.sqlite
+tonygestionclinica/db/*.sqlite-journal
+tonygestionclinica/db/*.db
 
 # Credenciales
 .env
