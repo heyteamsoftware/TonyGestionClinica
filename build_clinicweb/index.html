@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tony Gallardo · Gestión Clínica</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        clinic: {
+          50:'#f0f9ff',100:'#e0f2fe',200:'#bae6fd',300:'#7dd3fc',400:'#38bdf8',
+          500:'#0ea5e9',600:'#0284c7',700:'#0369a1',800:'#075985',900:'#0c4a6e'
+        }
+      },
+      fontFamily: { sans: ['Inter','Segoe UI','system-ui','sans-serif'] }
+    }
+  }
+}
+</script>
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased">
+
+<div class="flex min-h-screen">
+
+  <!-- Barra lateral -->
+  <aside id="sidebar" class="w-64 shrink-0 bg-clinic-900 text-clinic-100 flex flex-col">
+    <div class="px-5 py-6 border-b border-clinic-800">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-clinic-500 grid place-items-center text-white font-bold text-lg">TG</div>
+        <div class="leading-tight">
+          <p class="font-semibold text-white text-sm">Tony Gallardo</p>
+          <p class="text-xs text-clinic-300">Gestión Clínica</p>
+        </div>
+      </div>
+    </div>
+
+    <nav class="flex-1 p-3 space-y-1" id="nav">
+      <a href="#/dashboard" data-nav="dashboard" class="nav-link">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9 9 9M5 10v10h4v-6h6v6h4V10"/></svg>
+        Panel principal
+      </a>
+      <a href="#/agenda" data-nav="agenda" class="nav-link">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 2v4m8-4v4M3 10h18M5 6h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2z"/></svg>
+        Agenda
+      </a>
+      <a href="#/pacientes" data-nav="pacientes" class="nav-link">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM4 21v-1a6 6 0 0112 0v1"/></svg>
+        Pacientes
+      </a>
+    </nav>
+
+    <div class="p-3 border-t border-clinic-800">
+      <button id="btn-nuevo-paciente-side" class="w-full flex items-center justify-center gap-2 bg-clinic-500 hover:bg-clinic-400 text-white text-sm font-medium rounded-lg px-3 py-2.5 transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+        Nuevo paciente
+      </button>
+      <p class="text-[11px] text-clinic-400 text-center mt-3">v1.0 · SQLite</p>
+    </div>
+  </aside>
+
+  <!-- Contenido -->
+  <div class="flex-1 flex flex-col min-w-0">
+    <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between sticky top-0 z-20">
+      <div>
+        <h1 id="page-title" class="text-lg font-semibold text-slate-900">Panel principal</h1>
+        <p id="page-subtitle" class="text-sm text-slate-500"></p>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="relative hidden md:block">
+          <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M21 21l-4.3-4.3M11 19a8 8 0 110-16 8 8 0 010 16z"/></svg>
+          <input id="buscador-global" type="search" placeholder="Buscar paciente…" autocomplete="off"
+                 class="w-64 pl-9 pr-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-clinic-400 focus:border-clinic-400 outline-none">
+          <div id="buscador-resultados" class="hidden absolute mt-1 w-full bg-white border border-slate-200 rounded-lg shadow-lg max-h-72 overflow-auto z-30"></div>
+        </div>
+        <div class="text-right hidden sm:block">
+          <p id="fecha-hoy" class="text-sm font-medium text-slate-700"></p>
+          <p class="text-xs text-slate-400">Clínica dental</p>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" class="flex-1 p-6 overflow-x-hidden">
+      <div class="grid place-items-center h-64 text-slate-400">Cargando…</div>
+    </main>
+  </div>
+</div>
+
+<!-- Contenedor de modales -->
+<div id="modal-root"></div>
+<!-- Contenedor de avisos -->
+<div id="toast-root" class="fixed bottom-5 right-5 z-[100] space-y-2"></div>
+
+<script src="assets/js/api.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/views/dashboard.js"></script>
+<script src="assets/js/views/pacientes.js"></script>
+<script src="assets/js/views/ficha.js"></script>
+<script src="assets/js/views/agenda.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

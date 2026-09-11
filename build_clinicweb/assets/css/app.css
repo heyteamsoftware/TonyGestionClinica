@@ -1,0 +1,164 @@
+/* Tony Gallardo Gestion Clinica - estilos propios */
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .625rem .75rem;
+  border-radius: .5rem;
+  font-size: .875rem;
+  font-weight: 500;
+  color: #bae6fd;
+  transition: background-color .15s, color .15s;
+}
+.nav-link:hover { background-color: #075985; color: #fff; }
+.nav-link.active { background-color: #0284c7; color: #fff; }
+
+/* --- Odontograma --- */
+.odo-cuadrante {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: .375rem;
+}
+.odo-pieza {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .25rem;
+  padding: .375rem .125rem;
+  border: 1px solid #e2e8f0;
+  border-radius: .5rem;
+  background: #fff;
+  cursor: pointer;
+  transition: transform .12s, box-shadow .12s, border-color .12s;
+}
+.odo-pieza:hover {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+  box-shadow: 0 4px 12px -2px rgba(14, 165, 233, .35);
+}
+.odo-pieza .num {
+  font-size: .6875rem;
+  font-weight: 600;
+  color: #475569;
+  font-variant-numeric: tabular-nums;
+}
+.odo-diente {
+  width: 26px;
+  height: 32px;
+  border-radius: 45% 45% 38% 38% / 32% 32% 55% 55%;
+  border: 1.5px solid #94a3b8;
+  background: #fff;
+  position: relative;
+}
+.odo-pieza[data-estado="caries"]   .odo-diente { background: #ef4444; border-color: #b91c1c; }
+.odo-pieza[data-estado="empaste"]  .odo-diente { background: #3b82f6; border-color: #1d4ed8; }
+.odo-pieza[data-estado="implante"] .odo-diente { background: #a855f7; border-color: #7e22ce; }
+.odo-pieza[data-estado="ausente"]  .odo-diente { background: #e2e8f0; border-color: #94a3b8; opacity: .55; }
+.odo-pieza[data-estado="ausente"]  .odo-diente::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background:
+    linear-gradient(to bottom right, transparent 45%, #64748b 45%, #64748b 55%, transparent 55%),
+    linear-gradient(to bottom left,  transparent 45%, #64748b 45%, #64748b 55%, transparent 55%);
+}
+.odo-pieza[data-nota="1"] .num::after {
+  content: "•";
+  color: #f59e0b;
+  margin-left: 2px;
+  font-size: .875rem;
+  line-height: 0;
+}
+
+/* --- Agenda --- */
+.agenda-grid {
+  display: grid;
+  grid-template-columns: 72px repeat(var(--gabinetes, 2), minmax(0, 1fr));
+}
+.agenda-hora {
+  height: 56px;
+  border-top: 1px solid #e2e8f0;
+  font-size: .6875rem;
+  color: #94a3b8;
+  text-align: right;
+  padding: .125rem .5rem 0 0;
+  font-variant-numeric: tabular-nums;
+}
+.agenda-celda {
+  height: 56px;
+  border-top: 1px solid #e2e8f0;
+  border-left: 1px solid #e2e8f0;
+  position: relative;
+  cursor: pointer;
+  transition: background-color .12s;
+}
+.agenda-celda:hover { background-color: #f0f9ff; }
+.agenda-cita {
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  border-radius: .375rem;
+  padding: .25rem .5rem;
+  font-size: .6875rem;
+  line-height: 1.25;
+  overflow: hidden;
+  cursor: pointer;
+  border-left: 3px solid currentColor;
+  z-index: 5;
+  transition: filter .12s;
+}
+.agenda-cita:hover { filter: brightness(.96); }
+
+/* --- Utilidades --- */
+.card { background:#fff; border:1px solid #e2e8f0; border-radius:.75rem; }
+.input {
+  width: 100%;
+  padding: .5rem .75rem;
+  font-size: .875rem;
+  border: 1px solid #cbd5e1;
+  border-radius: .5rem;
+  outline: none;
+  background: #fff;
+  transition: border-color .12s, box-shadow .12s;
+}
+.input:focus { border-color:#38bdf8; box-shadow: 0 0 0 3px rgba(56,189,248,.25); }
+.label { display:block; font-size:.75rem; font-weight:600; color:#475569; margin-bottom:.25rem; }
+.btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  padding:.5rem 1rem; font-size:.875rem; font-weight:500; border-radius:.5rem;
+  transition: background-color .12s, opacity .12s; cursor:pointer;
+}
+.btn-primary { background:#0284c7; color:#fff; }
+.btn-primary:hover { background:#0369a1; }
+.btn-ghost { background:#f1f5f9; color:#334155; }
+.btn-ghost:hover { background:#e2e8f0; }
+.btn-danger { background:#fee2e2; color:#b91c1c; }
+.btn-danger:hover { background:#fecaca; }
+.btn-success { background:#059669; color:#fff; }
+.btn-success:hover { background:#047857; }
+
+.tab-btn {
+  padding:.625rem 1rem; font-size:.875rem; font-weight:500; color:#64748b;
+  border-bottom:2px solid transparent; cursor:pointer; white-space:nowrap;
+}
+.tab-btn:hover { color:#0284c7; }
+.tab-btn.active { color:#0284c7; border-bottom-color:#0284c7; }
+
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(15,23,42,.55);
+  display: grid; place-items: center; padding: 1rem; z-index: 50;
+  animation: fadeIn .12s ease-out;
+}
+.modal-box {
+  background:#fff; border-radius:.875rem; width:100%; max-height:92vh; overflow:auto;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,.35);
+  animation: popIn .14s ease-out;
+}
+@keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+@keyframes popIn { from { opacity:0; transform: translateY(8px) scale(.98) } to { opacity:1; transform:none } }
+
+.alerta-medica {
+  background:#fef2f2; border:1px solid #fecaca; border-left:4px solid #dc2626;
+  color:#991b1b; border-radius:.5rem; padding:.75rem 1rem;
+}

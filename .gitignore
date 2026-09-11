@@ -1,0 +1,12 @@
+# Base de datos generada en tiempo de ejecucion
+build_clinicweb/db/*.sqlite
+build_clinicweb/db/*.sqlite-journal
+build_clinicweb/db/*.db
+
+# Credenciales
+.env
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
