@@ -7,6 +7,7 @@
     agenda: 'Agenda',
     pacientes: 'Pacientes',
     paciente: 'Ficha del paciente',
+    admin: 'Administración',
   };
 
   const app = document.getElementById('app');
@@ -38,6 +39,7 @@
       if (vista === 'agenda') return await CW.Agenda.render(app);
       if (vista === 'pacientes') return await CW.Pacientes.render(app);
       if (vista === 'paciente' && parametro) return await CW.Ficha.render(app, Number(parametro));
+      if (vista === 'admin') return await CW.Admin.render(app);
 
       app.innerHTML = `<div class="card p-10 text-center">
         <p class="text-slate-600 font-medium">Página no encontrada</p>

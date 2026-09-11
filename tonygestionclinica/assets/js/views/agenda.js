@@ -349,5 +349,12 @@ CW.Agenda = (function () {
     });
   }
 
-  return { render, abrirFormularioCita, abrirDetalleCita, fijarFecha: (f) => { fechaActual = f; } };
+  return {
+    render,
+    abrirFormularioCita,
+    abrirDetalleCita,
+    fijarFecha: (f) => { fechaActual = f; },
+    // La administracion la invoca tras editar doctores o gabinetes.
+    limpiarCache: () => { cacheGabinetes = null; cacheDoctores = null; },
+  };
 })();

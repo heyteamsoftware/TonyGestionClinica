@@ -72,5 +72,11 @@ CW.Api = (function () {
     catalogo: () => request('catalogo'),
     doctores: () => request('doctores'),
     gabinetes: () => request('gabinetes'),
+
+    // Administracion: `recurso` es 'doctores', 'gabinetes' o 'catalogo'.
+    admListar: (recurso, todos = false) => request(recurso, { params: todos ? { todos: 1 } : {} }),
+    admCrear: (recurso, datos) => request(recurso, { metodo: 'POST', datos }),
+    admActualizar: (recurso, id, datos) => request(recurso, { metodo: 'PUT', params: { id }, datos }),
+    admBorrar: (recurso, id) => request(recurso, { metodo: 'DELETE', params: { id } }),
   };
 })();
