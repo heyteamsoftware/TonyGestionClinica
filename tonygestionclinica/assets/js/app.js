@@ -95,10 +95,6 @@
     document.getElementById('fecha-hoy').textContent =
       new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
 
-    document.getElementById('btn-nuevo-paciente-side').addEventListener('click', () => {
-      CW.Pacientes.abrirFormulario(null, () => enrutar());
-    });
-
     iniciarBuscador();
     window.addEventListener('hashchange', enrutar);
 
