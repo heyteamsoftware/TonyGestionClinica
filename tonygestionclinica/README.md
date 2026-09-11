@@ -63,6 +63,14 @@ con hostings compartidos que los bloquean.
 | `pagos` | POST, DELETE | `id` |
 | `catalogo`, `doctores`, `gabinetes` | GET | — |
 
+## Al publicar una versión nueva
+
+Los CSS, JS e imágenes se enlazan desde `index.html` con un sufijo `?v=N` y se cachean
+un año. **Sube el número `N` en todos los enlaces de `index.html` cada vez que cambies
+un fichero de `assets/`**, o los navegadores que ya visitaron la web seguirán ejecutando
+la versión antigua. El propio `index.html` nunca se cachea, así que el cambio de versión
+se propaga en la siguiente visita.
+
 ## Notas
 
 - La baja de un paciente es lógica (`activo = 0`): su historial, citas y cobros se conservan.

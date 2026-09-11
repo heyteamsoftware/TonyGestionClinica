@@ -20,8 +20,22 @@ Options -Indexes
     </IfModule>
 </FilesMatch>
 
+# Los assets se piden con ?v=N desde index.html, asi que pueden cachearse
+# mucho tiempo: al publicar una version nueva cambia la URL y el navegador
+# vuelve a descargarlos. El index.html, en cambio, nunca se cachea, porque
+# es quien lleva ese numero de version.
 <IfModule mod_expires.c>
     ExpiresActive On
-    ExpiresByType text/css "access plus 7 days"
-    ExpiresByType application/javascript "access plus 7 days"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache, must-revalidate"
+    </FilesMatch>
+    <FilesMatch "\.php$">
+        Header set Cache-Control "no-store"
+    </FilesMatch>
 </IfModule>
