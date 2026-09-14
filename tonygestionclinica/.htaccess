@@ -3,6 +3,13 @@
 DirectoryIndex index.html index.php
 Options -Indexes
 
+# Tipos que algunos hostings compartidos no traen configurados.
+<IfModule mod_mime.c>
+    AddType application/manifest+json .webmanifest
+    AddType image/svg+xml .svg
+    AddType image/x-icon .ico
+</IfModule>
+
 <IfModule mod_headers.c>
     Header set X-Content-Type-Options "nosniff"
     Header set X-Frame-Options "SAMEORIGIN"
